@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -13,10 +11,12 @@ public class PlayerController : MonoBehaviour
 
     public GameObject projectilePrefab;
 
-    // Start is called before the first frame update
-    void Start()
+    void CreateProjectile()
     {
-        
+        Vector3 projecttilePosition = transform.position;
+        projecttilePosition.y = projectilePrefab.transform.position.y;
+
+        Instantiate(projectilePrefab, projecttilePosition, projectilePrefab.transform.rotation);
     }
 
     // Update is called once per frame
@@ -30,7 +30,6 @@ public class PlayerController : MonoBehaviour
         transform.Translate(Vector3.forward * verticalInput * Time.deltaTime * speed);
 
         // Bound
-        // transform.position = Vector3.ClampMagnitude(transform.position, xBound);
         transform.position = new Vector3(
             Mathf.Clamp(transform.position.x, -xBound, xBound),
             transform.position.y,
@@ -40,14 +39,24 @@ public class PlayerController : MonoBehaviour
         // Fire Projectile
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Vector3 playerPosition = transform.position;
-            Vector3 projecttilePosition = new Vector3(
-                playerPosition.x,
-                projectilePrefab.transform.position.y,
-                playerPosition.z + 1 // prevent collision with player
-            );
+            CreateProjectile();
+        }
+    }
 
-            Instantiate(projectilePrefab, projecttilePosition, projectilePrefab.transform.rotation);
+    private void OnTriggerEnter(Collider other)
+    {
+        switch (other.tag)
+        {
+            case "Animal (Without Health)":
+                ScoreManager.Instance.DecreaseLives();
+
+                break;
+            case "Animal (With Health)":
+                ScoreManager.Instance.DecreaseLives();
+
+                break;
+            default:
+                break;
         }
     }
 }

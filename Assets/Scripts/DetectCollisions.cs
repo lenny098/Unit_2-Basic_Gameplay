@@ -1,18 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DetectCollisions : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        Destroy(gameObject);
-
-        // Destory animals that do not have a health bar
-        if (other.CompareTag("Animal (Without Health)"))
+        switch (other.tag)
         {
-            Destroy(other.gameObject);
-            ScoreManager.Instance.IncreaseScore();
+            case "Animal (Without Health)":
+                Destroy(gameObject);
+                Destroy(other.gameObject);
+
+                ScoreManager.Instance.IncreaseScore();
+
+                break;
+            case "Animal (With Health)":
+                Destroy(gameObject);
+
+                break;
+            default:
+                break;
         }
     }
 }
