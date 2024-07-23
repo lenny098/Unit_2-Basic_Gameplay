@@ -7,6 +7,8 @@ public class ScoreManager : MonoBehaviour
     public int score = 0;
     public int lives = 3;
 
+    public static ScoreManager Instance;
+
     public void IncreaseScore()
     {
         score += 1;
@@ -22,6 +24,17 @@ public class ScoreManager : MonoBehaviour
         {
             Debug.Log("Game Over!");
         }
+    }
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
     }
 
     // Start is called before the first frame update

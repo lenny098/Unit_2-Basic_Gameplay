@@ -12,14 +12,6 @@ public class DestroyOutOfBounds : MonoBehaviour
         new Vector3(50, 5, 30)
     );
 
-    private ScoreManager scoreManager;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -30,8 +22,7 @@ public class DestroyOutOfBounds : MonoBehaviour
             // Check whether this game object is projectile
             if (transform.position.z < bounds.max.z)
             {
-                // Debug.Log("Game Over!");
-                scoreManager.DecreaseLives();
+                ScoreManager.Instance.DecreaseLives();
             }
         }
     }

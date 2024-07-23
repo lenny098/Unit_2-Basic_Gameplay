@@ -11,13 +11,9 @@ public class HealthManager : MonoBehaviour
     public GameObject canvas;
     public Slider health;
 
-    private ScoreManager scoreManager;
-
     // Start is called before the first frame update
     void Start()
     {
-        scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
-
         canvas.transform.rotation = Quaternion.LookRotation(Vector3.up);
     }
 
@@ -37,7 +33,7 @@ public class HealthManager : MonoBehaviour
         if (currentHealth >= maxHealth)
         {
             Destroy(gameObject);
-            scoreManager.IncreaseScore();
+            ScoreManager.Instance.IncreaseScore();
         }
     }
 }
