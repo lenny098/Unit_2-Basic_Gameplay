@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
@@ -23,7 +21,6 @@ public class SpawnManager : MonoBehaviour
         GameObject animal = GetRandomAnimal();
 
         Vector3 spawnPosition = new Vector3(Random.Range(-spawnXBound, spawnXBound), 0, spawnZ);
-        // Instantiate(animal, spawnPosition, animal.transform.rotation);
         Instantiate(animal, spawnPosition, Quaternion.LookRotation(Vector3.back));
     }
 
@@ -51,11 +48,5 @@ public class SpawnManager : MonoBehaviour
         InvokeRepeating("SpawnRandomAnimal", startDelay, spawnInterval);
         InvokeRepeating("SpawnRandomAnimalLeft", startDelay, spawnInterval);
         InvokeRepeating("SpawnRandomAnimalRight", startDelay, spawnInterval);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }
