@@ -2,23 +2,32 @@ using UnityEngine;
 
 public class DestroyOutOfBounds : MonoBehaviour
 {
-    private Bounds bounds = new Bounds(
-        new Vector3(0, 0, 10),
-        new Vector3(50, 5, 30)
-    );
+    Bounds bounds;
+
+    private void Awake()
+    {
+        bounds = GameObject.Find("Bound").GetComponent<Renderer>().bounds;
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if (!bounds.Contains(transform.position))
-        {
-            Destroy(gameObject);
+        if (bounds.Contains(transform.position)) return;
 
-            // Check whether this game object is projectile
-            if (transform.position.z < bounds.max.z)
-            {
+        switch (tag)
+        {
+            case "Animal (Without Health)":
                 ScoreManager.Instance.DecreaseLives();
-            }
+
+                break;
+            case "Animal (With Health)":
+                ScoreManager.Instance.DecreaseLives();
+
+                break;
+            default:
+                break;
         }
+
+        Destroy(gameObject);
     }
 }
