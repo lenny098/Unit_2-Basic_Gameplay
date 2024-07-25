@@ -3,11 +3,11 @@ using UnityEngine.UI;
 
 public class HealthManager : MonoBehaviour
 {
-    public float maxHealth;
-    private float currentHealth = 0;
+    [SerializeField] int maxHunger;
+    int hunger = 0;
 
-    public GameObject canvas;
-    public Slider health;
+    [SerializeField] GameObject canvas;
+    [SerializeField] Slider hungerSlider;
 
     // Start is called before the first frame update
     void Start()
@@ -15,19 +15,14 @@ public class HealthManager : MonoBehaviour
         canvas.transform.rotation = Quaternion.LookRotation(Vector3.up);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        health.value = currentHealth / maxHealth;
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Food")) return;
 
-        currentHealth = Mathf.Min(currentHealth + 1, maxHealth);
+        hunger++;
+        hungerSlider.value = (float)hunger / maxHunger;
 
-        if (currentHealth >= maxHealth)
+        if (hunger >= maxHunger)
         {
             Destroy(gameObject);
             ScoreManager.Instance.IncreaseScore();

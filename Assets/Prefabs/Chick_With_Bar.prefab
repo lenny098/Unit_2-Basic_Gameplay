@@ -317,9 +317,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c58702dc9da96bf45b2876b5b160b776, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  maxHunger: 3
   canvas: {fileID: 2650120190063165809}
-  health: {fileID: 5424085855000001709}
+  hungerSlider: {fileID: 5424085855000001709}
 --- !u!114 &4594641262580436026
 MonoBehaviour:
   m_ObjectHideFlags: 0
