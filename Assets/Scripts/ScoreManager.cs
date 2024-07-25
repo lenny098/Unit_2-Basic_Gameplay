@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
-    public int score = 0;
-    public int lives = 3;
-
     public static ScoreManager Instance;
+
+    [SerializeField] int lives = 3;
+    int score = 0;
 
     public void IncreaseScore()
     {
-        score += 1;
+        score++;
         Debug.Log($"Score = {score}");
     }
 
