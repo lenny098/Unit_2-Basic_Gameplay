@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthManager : MonoBehaviour
+public class HungerManager : MonoBehaviour
 {
     [SerializeField] int maxHunger;
     int hunger = 0;
