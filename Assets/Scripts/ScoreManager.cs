@@ -1,27 +1,30 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance;
 
+    [SerializeField] Text scoreText;
+
     [SerializeField] int lives = 3;
     int score = 0;
+
+    void UpdateUI()
+    {
+        scoreText.text = lives < 1 ? "Game Over!" : $"Lives = {lives}\nScore = {score}";
+    }
 
     public void IncreaseScore()
     {
         score++;
-        Debug.Log($"Score = {score}");
+        UpdateUI();
     }
 
     public void DecreaseLives()
     {
         lives = Mathf.Max(lives - 1, 0);
-        Debug.Log($"Lives = {lives}");
-
-        if (lives < 1)
-        {
-            Debug.Log("Game Over!");
-        }
+        UpdateUI();
     }
 
     private void Awake()
@@ -33,11 +36,5 @@ public class ScoreManager : MonoBehaviour
         }
 
         Instance = this;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        Debug.Log($"Game Start, Lives = {lives} Score = {score}");
     }
 }
