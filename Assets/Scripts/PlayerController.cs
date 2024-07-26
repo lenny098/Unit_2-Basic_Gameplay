@@ -4,11 +4,12 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] float speed;
 
-    Bounds bounds;
-    public GameObject projectilePrefab;
+    [SerializeField] GameObject movementBounds;
+    [SerializeField] GameObject projectilePrefab;
 
     float horizontalInput;
     float verticalInput;
+    Bounds bounds;
 
     void Move()
     {
@@ -34,7 +35,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        bounds = GameObject.Find("Player Bound").GetComponent<Renderer>().bounds;
+        bounds = movementBounds.GetComponent<Renderer>().bounds;
     }
 
     // Update is called once per frame

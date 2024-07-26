@@ -545,6 +545,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  movementBounds: {fileID: 2092550448}
   projectilePrefab: {fileID: 6811551571487870320, guid: 03900dedb0ff48242992843c367770ba, type: 3}
 --- !u!65 &702724089
 BoxCollider:
