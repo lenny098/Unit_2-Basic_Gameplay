@@ -571,18 +571,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 3.1059732, z: 0.7568733}
   m_Center: {x: 0, y: 1.5034862, z: 0.021452338}
---- !u!114 &702724090
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 702724085}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b250ab716a2a6a4e94e261f2a4694eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &702724091
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -720,7 +708,7 @@ GameObject:
   - component: {fileID: 1282743669}
   - component: {fileID: 1282743668}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: Score Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -742,8 +730,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 82.6, y: -99.4469}
-  m_SizeDelta: {x: 111.6335, y: 92.8939}
+  m_AnchoredPosition: {x: 105.573, y: -99.4469}
+  m_SizeDelta: {x: 157.5795, y: 92.8939}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1282743668
 MonoBehaviour:
@@ -1042,9 +1030,6 @@ PrefabInstance:
       addedObject: {fileID: 702724089}
     - targetCorrespondingSourceObject: {fileID: 100046, guid: 3cf7f489270aac84fb12901330960a5b, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 702724090}
-    - targetCorrespondingSourceObject: {fileID: 100046, guid: 3cf7f489270aac84fb12901330960a5b, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 702724091}
   m_SourcePrefab: {fileID: 100100000, guid: 3cf7f489270aac84fb12901330960a5b, type: 3}
 --- !u!1 &1745930661
@@ -1076,6 +1061,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 401bfb978f043854b9e15437f8ed9c25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreText: {fileID: 0}
   lives: 3
 --- !u!4 &1745930663
 Transform:
