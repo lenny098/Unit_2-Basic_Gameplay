@@ -1155,7 +1155,7 @@ GameObject:
   - component: {fileID: 2037458397}
   - component: {fileID: 2037458396}
   m_Layer: 0
-  m_Name: Bound
+  m_Name: Destroy Bound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

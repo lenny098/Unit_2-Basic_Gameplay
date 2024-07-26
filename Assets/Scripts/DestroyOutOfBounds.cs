@@ -6,7 +6,7 @@ public class DestroyOutOfBounds : MonoBehaviour
 
     private void Awake()
     {
-        bounds = GameObject.Find("Bound").GetComponent<Renderer>().bounds;
+        bounds = GameObject.Find("Destroy Bound").GetComponent<Renderer>().bounds;
     }
 
     // Update is called once per frame
