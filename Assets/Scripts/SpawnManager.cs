@@ -4,48 +4,62 @@ public class SpawnManager : MonoBehaviour
 {
     public GameObject[] animalPrefabs;
 
-    public float spawnXBound;
-    public float spawnZ;
+    [SerializeField] GameObject spawnBoundTop;
+    [SerializeField] GameObject spawnBoundLeft;
+    [SerializeField] GameObject spawnBoundRight;
 
-    public float startDelay;
-    public float spawnInterval;
+    [SerializeField] float startDelay;
+    [SerializeField] float spawnInterval;
+
+    Bounds topBounds;
+    Bounds leftBounds;
+    Bounds rightBounds;
 
     GameObject GetRandomAnimal()
     {
         int spawnIndex = Random.Range(0, animalPrefabs.Length);
+
         return animalPrefabs[spawnIndex];
     }
 
-    void SpawnRandomAnimal()
+    void SpawnRandomAnimalTop()
     {
         GameObject animal = GetRandomAnimal();
+        Vector3 position = new Vector3(Random.Range(topBounds.min.x, topBounds.max.x), 0, topBounds.center.z);
+        Quaternion rotation = Quaternion.LookRotation(Vector3.back);
 
-        Vector3 spawnPosition = new Vector3(Random.Range(-spawnXBound, spawnXBound), 0, spawnZ);
-        Instantiate(animal, spawnPosition, Quaternion.LookRotation(Vector3.back));
+        Instantiate(animal, position, rotation);
     }
 
     void SpawnRandomAnimalLeft()
     {
         GameObject animal = GetRandomAnimal();
+        Vector3 position = new Vector3(leftBounds.center.x, 0, Random.Range(leftBounds.min.z, leftBounds.max.z));
+        Quaternion rotation = Quaternion.LookRotation(Vector3.right);
 
-        Vector3 spawnPosition = new Vector3(-spawnXBound - 5, 0, Random.Range(0, 15.0f));
-
-        Instantiate(animal, spawnPosition, Quaternion.LookRotation(Vector3.right));
+        Instantiate(animal, position, rotation);
     }
 
     void SpawnRandomAnimalRight()
     {
         GameObject animal = GetRandomAnimal();
+        Vector3 position = new Vector3(rightBounds.center.x, 0, Random.Range(rightBounds.min.z, rightBounds.max.z));
+        Quaternion rotation = Quaternion.LookRotation(Vector3.left);
 
-        Vector3 spawnPosition = new Vector3(spawnXBound + 5, 0, Random.Range(0, 15.0f));
+        Instantiate(animal, position, rotation);
+    }
 
-        Instantiate(animal, spawnPosition, Quaternion.LookRotation(Vector3.left));
+    private void Awake()
+    {
+        topBounds = spawnBoundTop.GetComponent<Renderer>().bounds;
+        leftBounds = spawnBoundLeft.GetComponent<Renderer>().bounds;
+        rightBounds = spawnBoundRight.GetComponent<Renderer>().bounds;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("SpawnRandomAnimal", startDelay, spawnInterval);
+        InvokeRepeating("SpawnRandomAnimalTop", startDelay, spawnInterval);
         InvokeRepeating("SpawnRandomAnimalLeft", startDelay, spawnInterval);
         InvokeRepeating("SpawnRandomAnimalRight", startDelay, spawnInterval);
     }
